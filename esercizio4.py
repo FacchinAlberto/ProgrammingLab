@@ -11,8 +11,8 @@ class Automobile():
     def parla(self):
         print('\nBroom Broom')
     
-    def confronta(self, casa_automo, modello, numero_posti):
-        if self.casa_automo == casa_automo and self.modello == modello and self.numero_posti == numero_posti:
+    def confronta(self, Automobile):
+        if self.casa_automo == Automobile.casa_automo and self.modello == Automobile.modello and self.numero_posti == Automobile.numero_posti:
             return True
         else:
             return False
@@ -29,7 +29,8 @@ class Transformer(Automobile):
 
 auto = Automobile('Fiat', 'Panda', 5, 'HR544HT')
 auto.parla()
-if auto.confronta('Fiat', 'Panda', 5) == True:
+auto2 = Automobile('Fiat', 'Panda', 5, 'HT653TR')
+if auto.confronta(auto2) == True:
     print('\nLe due auto sono uguali')
 else:
     print('\nLe due auto sono diverse')
