@@ -20,10 +20,6 @@ class CSVFile():
 
     def __str__(self):
         return self.name, self.file
-    
-    #funzione creata appositamente per Test_CSVFile.py
-    def nome_file(self):
-        return str(self.name)
 
     def intex(self):
         try:
