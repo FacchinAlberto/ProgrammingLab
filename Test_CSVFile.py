@@ -3,7 +3,7 @@ from CSVFile import CSVFile
 from CSVFile import DateCSVFile
 from CSVFile import ErroreAIDA
 
-#python -m unittest TestCSVFile.py
+#python -m unittest Test_CSVFile.py
 
 class TestCSVFile(unittest.TestCase):
     def test_nomefile(self):
