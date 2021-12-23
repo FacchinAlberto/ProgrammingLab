@@ -59,7 +59,7 @@ def esegui(Automa, capo):
         ris = Automa.pantaloni_up()
     else:
         ris = Automa.calzatura_up()
-    print('Ho indossato '+capo)
+    print('+ Ho indossato '+capo)
     return ris
 
 ################## MAIN ##################
@@ -71,32 +71,33 @@ res = 0
 
 while(vestito):
     capo = str(random.choice(capi_vestiario))
-    if capo == 'calzatura' and aut.calzatura is None:
-        if aut.calzini is None or aut.pantaloni is None:
-            print('Indossare '+capo+' ora va contro la procedura')
-        else:
+    try:
+        if capo == 'calzatura' and aut.calzatura is None:
+            if aut.calzini is None or aut.pantaloni is None:
+                print('Indossare '+capo+' ora va contro la procedura')
+            else:
+                res = esegui(aut, capo)
+        elif capo == 'pantaloni' and aut.pantaloni is None:
+            if aut.biancheria is None:
+                print('Indossare '+capo+' ora va contro la procedura')
+            else:
+                res = esegui(aut, capo)
+        elif capo == 'maglia' and aut.maglia is None:
+            if aut.biancheria is None:
+                print('Indossare '+capo+' ora va contro la procedura')
+            else:
+                res = esegui(aut, capo)
+        elif capo == 'calzini' and aut.calzini is None:
             res = esegui(aut, capo)
-    elif capo == 'pantaloni' and aut.pantaloni is None:
-        if aut.biancheria is None:
-            print('Indossare '+capo+' ora va contro la procedura')
-        else:
+        elif capo == 'biancheria' and aut.biancheria is None:
             res = esegui(aut, capo)
-    elif capo == 'maglia' and aut.maglia is None:
-        if aut.biancheria is None:
-            print('Indossare '+capo+' ora va contro la procedura')
-        else:
-            res = esegui(aut, capo)
-    elif capo == 'calzini' and aut.calzini is None:
-        res = esegui(aut, capo)
-    elif capo == 'biancheria' and aut.biancheria is None:
-        res = esegui(aut, capo)
-    
-    if res == 0:
-        raise Exception('Azione di indossare '+capo+' non andata a buon fine')
-        #print('Azione di indossare '+capo+' non andata a buon fine')
-    elif aut.biancheria is not None and aut.calzini is not None and aut.maglia is not None and aut.pantaloni is not None and aut.calzatura is not None:
-        vestito = False
-    #else:
-        #print('Ho appena indossato '+capo)
+        
+        if res == 0:
+            raise Exception('Azione di indossare '+capo+' non andata a buon fine')
+            #print('Azione di indossare '+capo+' non andata a buon fine')
+        elif aut.biancheria is not None and aut.calzini is not None and aut.maglia is not None and aut.pantaloni is not None and aut.calzatura is not None:
+            vestito = False
+    except Exception as e:
+        print('Non sono riuscito ad indossare il capo: '+capo)
 
 print('\nMi sono vestito completamente')

@@ -1,5 +1,12 @@
 import math
 
+### Dove ci sono try except commentati vuol dire che sono stati commentati per
+  # fare il testing, altrimenti, se non li avessi commentati, non avrei potuto
+  # controllare le eccezioni raised (es. raise TypeError, ValueError,
+  # ZeroDivisionError, ...) con self.asserRaises in Test_calcolatrice.py.
+  # Se non si vuole usare lo script del testing si possono togliere i commenti
+  # dei try except
+
 class Calcolatrice():
     def __init__(self):
         pass
@@ -11,13 +18,13 @@ class Calcolatrice():
             return False
 
     def somma(self, a, b):
-        try:
+        #try:
             if self.type_ok(a) and self.type_ok(b):
                 return a + b
             else:
                 raise TypeError('\nErrore di tipo')
-        except Exception as e:
-            print('\nImpossibile calcolare {} + {}'.format(a, b))
+        #except Exception as e:
+            #print('\nImpossibile calcolare {} + {}'.format(a, b))
 
     def sottrazione(self, a, b):
         try:
@@ -38,7 +45,7 @@ class Calcolatrice():
             print('\nImpossibile calcolare {} * {}'.format(a, b))
 
     def divisione(self, a, b):
-        try:
+        #try:
             if self.type_ok(a) and self.type_ok(b):
                 if b != 0:
                     return a / b
@@ -46,8 +53,8 @@ class Calcolatrice():
                     raise ZeroDivisionError('\nImpossibile dividere per 0')
             else:
                 raise TypeError('\nErrore di tipo')
-        except Exception as e:
-            print('\nImpossibile calcolare {} / {}'.format(a, b))  
+        #except Exception as e:
+            #print('\nImpossibile calcolare {} / {}'.format(a, b))  
 
     def potenza(self, a, b):
         try:
@@ -68,7 +75,7 @@ class Calcolatrice():
             print('\nImpossibile calcolare {} % {}'.format(a, b))
 
     def radice(self, a):
-        try:
+        #try:
             if self.type_ok(a):
                 if a >= 0:
                     return math.sqrt(a)
@@ -76,8 +83,8 @@ class Calcolatrice():
                     raise ValueError('\nImpossibile calcolare radice di un numero negativo')
             else:
                 raise TypeError('\nErrore di tipo')
-        except Exception as e:
-            print('\nImpossibile calcolare sqrt({})'.format(a))  
+        #except Exception as e:
+            #print('\nImpossibile calcolare sqrt({})'.format(a))  
 
     def cambio_base(self, a):
         try:
