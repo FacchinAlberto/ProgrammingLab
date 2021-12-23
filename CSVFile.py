@@ -47,16 +47,18 @@ class CSVFile():
         try:
             start = int(start)
             end = int(end)
+            try:
+                my_file = open(self.file, 'r')
+                my_list.append(my_file.readlines()[start:end+1])
+                #print(my_list)
+                my_file.close()
+                return my_list
+            except Exception as e:
+                print('ERROR: Impossibile aprire file "{}"'.format(self.file))
         except TypeError:
-            raise ErroreAIDA.range_lines(start, end)
+            #raise ErroreAIDA.range_lines(start, end)
             print('\nCausa intervallo di righe non leggibile ho letto tutto il file')
-        try:
-            my_file = open(self.file, 'r')
-            my_list.append(my_file.readlines()[start:end+1])
-            print(my_list)
-            my_file.close()
-        except Exception as e:
-            print('ERROR: Impossibile aprire file "{}"'.format(self.file))
+            return self.get_data()
 
 class NumericalCSVFile(CSVFile):
     def get_data(self):
@@ -78,12 +80,12 @@ class DateCSVFile(CSVFile):
         return date_vendite
 
 obj = CSVFile(input('Nome file: '), input('Percorso file: '))
-obj.get_data_start_end(input("\nStart: "), input("\nEnd: "))
-#mia_lista = obj.get_data()
+#obj.get_data_start_end(input("\nStart: "), input("\nEnd: "))
+mia_lista = obj.get_data()
 #print('Nome file: {}'.format(obj.name))
 #print('Contenuto: ')
-#for x in mia_lista:
-    #print(x)
+for x in mia_lista:
+    print(x)
 numobj = NumericalCSVFile(obj.name, obj.file)
 mia_lista = numobj.get_data()
 print('\nContenuto con conversione in float: ')
