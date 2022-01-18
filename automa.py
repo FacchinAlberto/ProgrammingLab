@@ -100,4 +100,4 @@ while(vestito):
     except Exception as e:
         print('Non sono riuscito ad indossare il capo: '+capo)
 
-print('\nMi sono vestito completamente')
+print('\nMi sono vestito completamente') """
