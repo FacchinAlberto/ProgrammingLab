@@ -35,7 +35,7 @@ class CSVTimeSeriesFile():
                             if elem[0] != 'date':
                                 
                                 elem[0] = str(elem[0])
-                                #controllo se è presente un duplicato
+                                #controllo se è presente il trattino
                                 if '-' not in elem[0]:
                                     print('ERROR: anomalia a riga {}'.format(current_line))
                                 #controllo se quella data è già presente
@@ -66,6 +66,12 @@ class CSVTimeSeriesFile():
                                         else:
                                             last_date[0] = int(current_date[0])
                                             last_date[1] = int(current_date[1])
+                                        
+                                        
+                                        #controllo se ci sono pezzi di codice in più dopo il valore dei passeggeri
+                                        #aus = elem[1].rstrip().split(' ')
+                                        #if len(aus) > 1:
+                                            #elem[1] = aus[0]
 
                                         try:
                                             #converto le migliaia di passeggeri in intero
@@ -114,11 +120,11 @@ def parameter_ok(parameter):
 def time_series_ok(time_series):
     if time_series is not None and isinstance(time_series, list):
         for item in time_series:
-            #controllo se c'è un elemento None o se non c'è la virgola o se nella data non è presente in trattino
-            if item is None or ',' not in str(item) or '-' not in item[0]:
-                return False 
+            #controllo se l'elemento non è None e se c'è la virgola
+            if item is not None and ',' in str(item):
+                return True 
             else:
-                return True
+                return False
     else:
         return False
     
@@ -147,8 +153,6 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
                         if first_year > last_year:
                             first_year, last_year = last_year, first_year
                         
-                        my_dict = {}
-
                         for item in time_series:
                             #prendo anno e mese insieme
                             elem = str(item[0])
