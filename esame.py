@@ -208,14 +208,3 @@ def compute_avg_monthly_difference(time_series, first_year, last_year):
             print('ERROR: impossibile procedere senza covertire in intero first_year e/o last_year')
     else:
         raise ExamException('ERROR: valore di first_year e/o di last_year non computabile')
-
-
-### MAIN ###
-
-time_series_file = CSVTimeSeriesFile('data.csv')
-time_series = time_series_file.get_data()
-#for item in time_series:
-    #print(item)
-avg_variation = compute_avg_monthly_difference(time_series, '1949', '1951')
-print('\n')
-print(avg_variation)
